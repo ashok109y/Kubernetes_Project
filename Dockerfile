@@ -18,4 +18,4 @@ RUN rm -rf /var/www/html/index.html && \
 EXPOSE 80
 
 # Start Apache in the foreground
-CMD ["apachectl", "-D". "FOREGROUND"]
+CMD ["apachectl", "-D", "FOREGROUND"]
