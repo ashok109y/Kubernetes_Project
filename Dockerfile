@@ -1,16 +1,24 @@
-FROM centos:stream9
-RUN cd /etc/yum.repos.d/
-RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
-RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
-RUN yum -y install java
-CMD /bin/bash
-RUN yum install -y httpd
-RUN yum install -y zip
-RUN yum install -y unzip
-ADD https://www.free-css.com/assets/files/free-css-templates/download/page254/photogenic.zip /var/www/html/
-WORKDIR /var/www/html/
-RUN sh -c 'unzip -q "*.zip"'
-RUN cp -rvf photogenic/* .
-RUN rm -rf photogenic photogenic.zip
-CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+FROM alpine:latest
+
+# Install necessary packages
+RUN apk update && apk add --no-cache \
+    openjdk17 \
+    apache2 \
+    zip \
+    unzip \
+    curl
+
+# Set working directory
+WORKDIR /var/www/localhost/htdocs/
+
+# Download the zip file and extract it
+ADD https://www.free-css.com/assets/files/free-css-templates/download/page254/photogenic.zip .
+RUN unzip photogenic.zip && \
+    mv photogenic/* . && \
+    rm -rf photogenic photogenic.zip
+
+# Expose Apache HTTP port
 EXPOSE 80
+
+# Start Apache in the foreground
+CMD ["httpd", "-D", "FOREGROUND"]
