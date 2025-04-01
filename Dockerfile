@@ -6,8 +6,8 @@ RUN apt update && apt upgrade -y && apt install openjdk-17-jre apache2 unzip wge
 WORKDIR /var/www/
 
 RUN wget https://www.tooplate.com/download/2137_barista_cafe && \
-    tar -xvf *.tar.gz && \
-    rm -rf *.tar.gz
+    unzip 2137_barista_cafe.zip && \
+    rm -rf 2137_barista_cafe.zip
     
 WORKDIR /var/www/html/
 
