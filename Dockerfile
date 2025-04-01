@@ -1,10 +1,10 @@
 FROM ubuntu:latest
 
 # Install necessary packages
-RUN apt update && apt upgrade -y && apt install --no-cache \
+RUN apt update && apt upgrade -y && apt install \
     openjdk-17-jre \
     unzip \
-    apache2
+    apache2 >> /dev/null
 
 WORKDIR /var/www/localhost/htdocs
 
