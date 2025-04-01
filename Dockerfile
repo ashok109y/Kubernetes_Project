@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 
 # Install necessary packages
-RUN apt update && apt upgrade -y && apt install openjdk-17-jre apache2 unzip -y
+RUN apt update && apt upgrade -y && apt install openjdk-17-jre apache2 unzip wget -y
 
 WORKDIR /var/www/
 
