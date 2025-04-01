@@ -11,7 +11,7 @@ RUN wget https://www.tooplate.com/download/2137_barista_cafe && \
     
 WORKDIR /var/www/html/
 
-RUN rm -rf /var/www/html/index.html
+RUN rm -rf /var/www/html/index.html && \
     mv /var/www/2137_barista_cafe/* .
 
 EXPOSE 80
