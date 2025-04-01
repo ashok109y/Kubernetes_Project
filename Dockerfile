@@ -5,13 +5,13 @@ RUN apt update && apt upgrade -y && apt install openjdk-17-jre apache2 unzip -y
 
 WORKDIR /var/www/localhost/htdocs
 
-RUN wget photogenic.zip https://www.free-css.com/assets/files/free-css-templates/download/page254/photogenic.zip && \
-    unzip photogenic.zip && \
-    rm -rf photogenic photogenic.zip
+RUN wget https://www.tooplate.com/download/2137_barista_cafe && \
+    tar -xvf *.tar.gz && \
+    rm -rf *.tar.gz
     
 WORKDIR /var/www/html/
 
-RUN mv /var/www/localhost/htdocsphotogenic/* .
+RUN mv /var/www/localhost/2137_barista_cafe/* .
 
 EXPOSE 80
 
